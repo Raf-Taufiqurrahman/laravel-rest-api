@@ -17,8 +17,8 @@ class RegisterControllerTest extends TestCase
         $response = $this->postJson('/api/register', [
             'name' => 'Test User',
             'email' => 'test@dev.com',
-            'password' => bcrypt('password'),
-            'password_confirmation' => bcrypt('password'),
+            'password' => 'password',
+            'password_confirmation' => 'password',
         ]);
 
         // assert that the response is a 200 with a json structure containing an access token and a token type
@@ -43,13 +43,13 @@ class RegisterControllerTest extends TestCase
         $response = $this->postJson('/api/register', [
             'name' => 'Another User',
             'email' => 'test@dev.com',
-            'password' => bcrypt('password'),
-            'password_confirmation' => bcrypt('password'),
+            'password' => 'password',
+            'password_confirmation' => 'password',
         ]);
 
         // assert that the response is a 422 with json validation errors for the email
         $response->assertStatus(422)
-                 ->assertJsonValidationErrors(['email']);
+            ->assertJsonValidationErrors(['email']);
     }
 
     public function test_user_cannot_register_with_invalid_data()
@@ -64,6 +64,6 @@ class RegisterControllerTest extends TestCase
 
         // assert that the response is a 422 with json validation errors for the name, email, and password
         $response->assertStatus(422)
-                 ->assertJsonValidationErrors(['name', 'email', 'password']);
+            ->assertJsonValidationErrors(['name', 'email', 'password']);
     }
 }
