@@ -9,6 +9,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ProfileControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_unauthenticated_user_cannot_access_profile()
     {
         // send json get request to view profile
