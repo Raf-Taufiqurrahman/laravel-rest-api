@@ -32,7 +32,7 @@ class LoginController extends Controller
         // create token
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        // return response
+        // return response json
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
