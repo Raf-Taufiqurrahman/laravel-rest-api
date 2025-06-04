@@ -43,4 +43,13 @@ class ProfileController extends Controller
             'user' => $user
         ]);
     }
+
+    public function logout(Request $request)
+    {
+        // remove token user
+        $request->user()->currentAccessToken()->delete();
+
+        // return response json
+        return response()->json(['message' => 'Logged out successfully']);
+    }
 }
